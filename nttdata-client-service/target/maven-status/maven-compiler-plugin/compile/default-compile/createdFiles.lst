@@ -1,0 +1,6 @@
+com\nttdata\client\service\ClientService.class
+com\nttdata\client\ClientApplication.class
+com\nttdata\client\service\impl\ClientServiceImpl.class
+com\nttdata\client\controller\ClientController.class
+com\nttdata\client\shared\constants\ClientConstants.class
+com\nttdata\client\model\ClientEntity.class
