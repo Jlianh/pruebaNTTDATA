@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 d-flex flex-column justify-content-center align-items-center" style="height: 108vh;">
+            <div class="d-flex flex-column border border-opacity-50 border-primary bg-light rounded p-5 shadow"
+                style="width: 30vw;">
+                @if (!clientData) {
+                <img src="../../../assets/not-found.png" alt="Not found">
+                <h1 class="fs-3 text-center p-2 text-primary mb-5">El cliente que buscas no existe</h1>
+                } @else {
+                <h1 class="fs-3 p-2 text-center">Informacion del cliente</h1>
+                <hr>
+                <div class="p-2"><b class="text-primary">Documento: </b>{{clientData!.document}}</div>
+                <hr>
+                <div class="p-2"><b class="text-primary">Tipo Documento: </b>
+                    @if (clientData.typeDocument === "CC") {
+                    Cedula de Ciudadania
+                    }
+                    @if (clientData.typeDocument === "PP") {
+                    Pasaporte
+                    }
+                </div>
+                <hr>
+                <div class="p-2"><b class="text-primary">Nombres: </b>{{clientData.firstName}} {{clientData.secondName}}
+                </div>
+                <hr>
+                <div class="p-2"><b class="text-primary">Apellidos: </b>{{clientData.firstSurname}}
+                    {{clientData.secondSurname}}</div>
+                <hr>
+                <div class="p-2"><b class="text-primary">Telefono: </b>{{clientData.phone}}</div>
+                <hr>
+                <div class="p-2"><b class="text-primary">Direccion: </b>{{clientData.address}}</div>
+                <hr>
+                <div class="p-2"><b class="text-primary">Ciudad: </b>{{clientData.city}}</div>
+                <hr>
+                }
+                <div class="p-2 align-self-center">
+                    <button class="btn btn-outline-primary p-3" [routerLink]="['/client-form']"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left mx-2">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M5 12l14 0" />
+                            <path d="M5 12l6 6" />
+                            <path d="M5 12l6 -6" />
+                        </svg>Ir atras</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

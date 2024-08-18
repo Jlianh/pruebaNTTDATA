@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 d-flex flex-column justify-content-center align-items-center" style="height: 108vh;">
+            <div class="d-flex flex-column border border-opacity-50 border-primary bg-light rounded p-4 shadow">
+                <form [formGroup]="clientForm">
+                    <h1 class="fs-2 text-start p-3 mb-3">Formulario de busqueda</h1>
+                    <div class="mb-3">
+                        <label for="documentType" class="form-label text-primary">Tipo de documento <small
+                                class="text-danger">*</small></label>
+                        <select formControlName="documentType" id="documentType" class="form-select"
+                            [ngClass]="{'border-danger-subtle': clientForm.get('documentType')?.touched && !clientForm.get('documentType')?.value}">
+                            <option value="" disabled selected>-</option>
+                            @for (documentType of documentTypes; track $index) {
+                            <option [value]="documentType.value">{{documentType.label}}</option>
+                            }
+                        </select>
+                        @if (clientForm.get('documentType')?.touched && !clientForm.get('documentType')?.value) {
+                        <div class="text-danger form-text">Este campo es obligatorio</div>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="document" class="form-label text-primary">Tipo de documento <small
+                                class="text-danger">*</small></label>
+                        <input type="text" formControlName="document" id="document" class="form-control" maxlength="12"
+                            [ngClass]="{'border-danger-subtle': clientForm.get('document')?.touched && !clientForm.get('document')?.value 
+                         || clientForm.get('document')?.hasError('pattern')
+                         || clientForm.get('document')?.hasError('minlength') || clientForm.get('document')?.hasError('maxlength')}">
+                        @if (clientForm.get('document')?.touched && !clientForm.get('document')?.value) {
+                        <div class="text-danger form-text">Este campo es obligatorio</div>
+                        }
+                        @if (clientForm.get('document')?.hasError('pattern')) {
+                        <div class="text-danger form-text">Este campo solo permite numeros</div>
+                        }
+                        @if (clientForm.get('document')?.hasError('minlength') ||
+                        clientForm.get('document')?.hasError('maxlength')) {
+                        <div class="text-danger form-text">Este campo debe ser minimo 8 numeros maximo 11</div>
+                        }
+                    </div>
+                    <div class="my-4">
+                        <button class="btn p-2" [ngClass]="{'btn-outline-secondary': clientForm.invalid,
+                         'btn-outline-primary': clientForm.valid}" type="button" [disabled]="clientForm.invalid"
+                            (click)="getClientData()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-user-search">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" />
+                                <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                <path d="M20.2 20.2l1.8 1.8" />
+                            </svg>Consultar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
